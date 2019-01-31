@@ -1,4 +1,4 @@
-# FindYourBeat
+# Find Your Beat
 
 ## What is it?
 FindYourBeat is a personal project of mine that I made to not only build up my Python programming skills but also to find solutions for stale listening for everyday users. For those who are trying to find more songs within their favorite genres or even explore a new genre entirely, FindYourBeat is the answer to your problems.
