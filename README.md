@@ -1,9 +1,8 @@
-# FindYourBeat
-
+# Find Your Beat
+Personal Project
 ## What is it?
-FindYourBeat is a personal project of mine that I made to not only build up my Python programming skills but also to find solutions for stale listening for everyday users. For those who are trying to find more songs within their favorite genres or even explore a new genre entirely, FindYourBeat is the answer to your problems.
+Find Your Beat helps people find new music based on their own preferences. There is also a "Taste Breaker" option that randomizes the search for a new genre or song if you are feeling adventerous.
 
-## How Does it work?
-It indexes through the /r/Music subreddit to find new music in accordance to the user's taste preferences. There are options many options provided to support a more fluid user experience such as having a deeper search to find more music choices and a randomizer that gives the user a taste-breaker in order to explore more genres.
+## How Does it Work?
+Find Your Beat indexes through the /r/Music subreddit to find new music in accordance to the user's taste preferences. There are many other options provided to support a more flexible user experience including deeper search for more music results and a randomizer that helps explore new genres and music.
 
-### Most functionality will be updated into this repository 1/31/2019
