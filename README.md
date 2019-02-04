@@ -17,7 +17,7 @@ Find Your Beat indexes through the /r/Music subreddit to find new music in accor
 * Creation of executable for program
 * full support of scraping other websites
 
-# Bugs to fix
+### Bugs to fix
 * Minor Instruction formatting nuances
 * Error handeling for some inputs
 
