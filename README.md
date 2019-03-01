@@ -15,9 +15,10 @@ Find Your Beat indexes through the /r/Music subreddit to find new music in accor
 
 ## To implement in future
 * Creation of executable for program
-* full support of scraping other websites
+* Full support of scraping other websites
+* Graphical User Interface
 
 ### Bugs to fix
-* Minor Instruction formatting nuances
+* Minor formatting nuances
 * Error handeling for some inputs
 
