@@ -6,7 +6,8 @@ Formats outputs in terminal to support better user experience
 '''
 import shutil
 
-class TermForm():
+
+class TermForm:
     columns = -1
 
     def __init__(self):
