@@ -12,7 +12,7 @@ def main():
     valid_input = False
 
     while not valid_input:
-        navigation_input = input("Would you like to navigate using the terminal or GUI? [terminal/gui]")
+        navigation_input = input("Would you like to navigate using the terminal or GUI? [terminal/gui]: ")
 
         if navigation_input.lower() == "terminal":
             # execute terminal

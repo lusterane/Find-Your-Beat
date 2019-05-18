@@ -2,7 +2,7 @@
 Toby Chow
 TerminalFormatter.py
 
-Formats outputs in terminal to support better user experience
+Finds the number of columns
 '''
 import shutil
 
