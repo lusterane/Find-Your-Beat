@@ -24,9 +24,8 @@ def execute_terminal_view():
             if url_input == '1' or url_input.find('reddit.com/r/Music/') is not -1:
                 url = "https://old.reddit.com/r/Music/"
                 accepted = True
-    print(center_text('Congratulations, you have successfully connected to /r/Music'))
     key_words = []
-    navigation_menu(url, key_words)
+    search_preference_menu(url, key_words)
 
 
 def navigation_menu(url, key_words):
@@ -60,34 +59,36 @@ def search_music(url, key_words):
     print(center_text('==================='))
     print(center_text('Search Music'))
     print(center_text('==================='))
-    print(center_text("Enter 's' to search for music!"))
+    print(center_text("Enter 's' to start searching for music!"))
     print(center_text("To quit to The Navigation Menu, enter 'q'"))
     user_input = input().lower()
     accepted = False
     while not accepted:
         if user_input == 's':
             accepted = True
-            is_number = False
-            pages_input = input("Enter the amount of pages you'd like to search: ").lower()
 
-            # if user wants to exit
-            if pages_input is 'q':
-                search_music(url, key_words)
+            stop_searching = False
+            while not stop_searching:
+                # start searching 5 pages
+                Crawler().item_spider(url, 5, key_words)
 
-            while not is_number:
-                if pages_input.isdigit():
-                    is_number = True
-                else:
-                    pages_input = input("Please enter a valid input: ").lower()
-            pages = int(pages_input)
-            Crawler().item_spider(url, pages, key_words)
-            search_music(url, key_words)
+                # read the items in music_data
 
-        elif user_input == 'q':
-            accepted = True
-            navigation_menu(url, key_words)
-        else:
-            user_input = input("Please enter a valid input: ").lower()
+
+                search_more_input = input("Not enough options? Enter 'y' to search for more! Other wise, enter 'q' to return to navigation\n\n")
+
+                valid_input = False
+                while not valid_input:
+                    # if user wants to exit
+                    if search_more_input is 'q':
+                        valid_input = True
+                        stop_searching = True
+                        navigation_menu(url, key_words)
+                    # else if user wants to search for more
+                    elif search_more_input is 'y':
+                        valid_input = True
+                    else:
+                        search_more_input = input("Please enter a valid input: ")
 
 
 # ** add options for default genres
@@ -95,21 +96,13 @@ def search_preference_menu(url, key_words):
     print(center_text('========================'))
     print(center_text('Search Preferences Menu'))
     print(center_text('========================'))
-    print(center_text("To log a search preference, enter 'e <key word>'. "))
-    print(center_text(" * These search preferences will assist in personalizing your searches to fit your taste"))
-    print(center_text("To remove an existing entry, enter 'r <key word>. "))
-    print(center_text("To quit to The Navigation Menu, enter 'q'"))
+    print(center_text("What type of music do you like? (ex. rock, hip-hop, country, etc.)"))
+    print(center_text("Made a mistake? Remove with 'r <music preference>'. (ex. r rock)"))
+    print(center_text("Don't have any more preferences? Enter 'q' to go to the Navigation Menu"))
     user_input = input().lower()
     accepted = False
     while not accepted:
-        if len(user_input) > 2 and user_input[0] is 'e' and user_input[1] is ' ':
-            # enter search preference
-            key_words.append(user_input[2:])
-            print("\nSearch preference '" + user_input[2:] + "' has been added")
-            print("Existing Search Preferences: ",)
-            print_list(key_words)
-            search_preference_menu(url, key_words)
-        elif len(user_input) > 2 and user_input[0] is 'r' and user_input[1] is ' ':
+        if len(user_input) > 2 and user_input[0] is 'r' and user_input[1] is ' ':
             # check if entry in list
             if user_input[2:] not in key_words:
                 print("Removal unsuccessful. Keyword is not in list.")
@@ -122,17 +115,26 @@ def search_preference_menu(url, key_words):
             search_preference_menu(url, key_words)
 
         elif user_input == 'q':
-            # enter navigation menu
-            navigation_menu(url, key_words)
+            # break out of loop
             accepted = True
 
+            # enter navigation menu
+            navigation_menu(url, key_words)
         else:
-            user_input = input("Please enter a valid input: ").lower()
+            # enter search preference
+            accepted = True
+            key_words.append(user_input)
+            print("\nSearch preference '" + user_input + "' has been added")
+            print("Existing Search Preferences: ", end="")
+            print_list(key_words)
+            search_preference_menu(url, key_words)
 
 
 def print_list(key):
     for l in key:
-        print(str(l)),
+        print(str(l) + ",", end=" ")
+
+    print()
 
 
 def taste_breaker_menu(url, key_words):
