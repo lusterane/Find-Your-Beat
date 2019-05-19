@@ -70,9 +70,9 @@ def search_music(url, key_words):
             is_number = False
             pages_input = input("Enter the amount of pages you'd like to search: ").lower()
 
-            # case user wants to exit
+            # if user wants to exit
             if pages_input is 'q':
-                navigation_menu(url, key_words)
+                search_music(url, key_words)
 
             while not is_number:
                 if pages_input.isdigit():
@@ -146,8 +146,19 @@ def taste_breaker_menu(url, key_words):
     while not accepted:
         if user_input == 't':
             # ** add user input proofing
-            pages = int(input("Enter the amount of pages you'd like to search: "))
-            Crawler().randomizer(url, pages, key_words)
+            accepted = True
+            pages = input("Enter the amount of pages you'd like to search: ")
+            # if user wants to exit
+            if pages is 'q':
+                taste_breaker_menu(url, key_words)
+            # error handling
+            digit = False
+            while not digit:
+                if not pages.isdigit():
+                    pages = input("Please enter a valid input: ").lower()
+                else:
+                    digit = True
+            Crawler().randomizer(url, int(pages), key_words)
         elif user_input == 'q':
             accepted = True
             navigation_menu(url, key_words)
