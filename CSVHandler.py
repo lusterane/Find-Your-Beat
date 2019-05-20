@@ -1,29 +1,31 @@
 import csv
+import pandas
 
 '''
-writes a set of dictionaries into csv file stored in /data directory
-stores music results from searches
+appends a set of dictionaries into csv file stored in /data directory
+d_set - the set of dictionaries to input into csv
+file_dir - path to file to write/append to
+mode - mode to write or append for csv
+fieldnames - header names of csv
 '''
-def write_music_data(m_set):
-    with open('data/music_data.txt', mode='w', newline='') as music_file:
-        fieldnames = ['song', 'link']
+def write_data(d_set, file_dir,  fieldnames):
+    # encoding in utf-8 fixes UnicodeEncodingError
+    with open(file_dir, mode='a', newline='', encoding="utf-8") as music_file:
         music_writer = csv.DictWriter(music_file, fieldnames=fieldnames)
 
-        music_writer.writeheader()
-        for m_dict in m_set:
-            music_writer.writerow(m_dict)
-
+        for d_dict in d_set:
+            music_writer.writerow(d_dict)
 
 '''
-writes a set of dictionaries into csv file stored in /data directory
-stores keywords for search preferences
+initializes csv file by overwriting previous data and creating a header
 '''
-def write_key_words(k_set):
-    with open('data/key_words.txt', mode='w', newline='') as key_file:
-        fieldnames = ['keywords']
-        key_writer = csv.DictWriter(key_file, fieldnames=fieldnames)
-
-        key_writer.writeheader()
-        for key in k_set:
-            key_writer.writerow(key)
-
+def initialize_csv(file_dir, fieldnames):
+    with open(file_dir, mode='w', newline='') as new_csv:
+        new_writer = csv.DictWriter(new_csv, fieldnames=fieldnames)
+        new_writer.writeheader()
+'''
+reads csv file with pandas
+'''
+def read_csv_file(csv_name):
+    rd = pandas.read_csv(csv_name)
+    return rd
